@@ -4,6 +4,9 @@ jobs:
     docker:
       - image: ubuntu:xenial
     steps:
+      - run: sudo apt install -y yum
+      - run: yum install -y epel-release
+      - run: yum update -y epel-release
       - run: apt-get update
       - run: apt-get -y install build-essential
       - run: apt-get -y install curl
