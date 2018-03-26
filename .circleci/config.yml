@@ -1,32 +1,32 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: ubuntu:xenial
+    machine: true
     steps:
-      - run: apt-get update
-      - run: apt install -y yum
-      - run: apt-get -y install lsb-release
-      - run: apt-get -y install apt-transport-https
-      - run: apt-get -y install software-properties-common
-      - run: apt-get -y install build-essential
-      - run: apt-get -y install curl
-      - run: apt-get -y install unzip
-      - run: apt-get -y install git-all
-      - run:
-          command: |
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-            add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-            apt-cache policy docker-ce
-            apt-get update
-            apt-get install -y docker-ce
-            echo "INFO: `date`: ------------------Docker package installation complete--------------------------"
+#      - checkout
+#      - run: apt-get update
+#      - run: apt install -y yum
+#      - run: apt-get -y install lsb-release
+#      - run: apt-get -y install apt-transport-https
+#      - run: apt-get -y install software-properties-common
+#      - run: apt-get -y install build-essential
+#      - run: apt-get -y install curl
+#      - run: apt-get -y install unzip
+#      - run: apt-get -y install git-all
+#      - run:
+#        command: |
+#          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+#          add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+#          apt-cache policy docker-ce
+#          apt-get update
+#          apt-get install -y docker-ce
+#          echo "INFO: `date`: ------------------Docker package installation complete--------------------------"
       - run: service docker status
       - run:
-          command: |
-            cd ~
-            git clone https://github.com/OlegGorj/nginx-docker-minimal.git
-            cd nginx-docker-minimal
+        command: |
+          cd ~
+          git clone https://github.com/OlegGorj/nginx-docker-minimal.git
+          cd nginx-docker-minimal
       - run:
-          command: |
-            docker build .
+        command: |
+          docker build .
