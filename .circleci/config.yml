@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ubuntu:xenial
+    steps:
+      - checkout
+      - run: ls -la
+      - run: apt-get update
+      - run: apt-get -y install build-essential
+      - run: apt-get -y install curl
+      - run: apt-get -y install unzip
+      - run: apt-get -y install git-all
+      - run:
+          command: |
+            cd ~
+            git clone https://github.com/OlegGorj/nginx-docker-minimal.git
+            cd nginx-docker-minimal
+            docker build .
