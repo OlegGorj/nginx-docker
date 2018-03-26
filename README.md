@@ -18,7 +18,7 @@ git clone https://github.com/OlegGorj/nginx-docker-minimal.git
 2. Run `build` command
 
 ```
-cd cd nginx-docker-minimal
+cd nginx-docker-minimal
 docker build .
 
 ```
