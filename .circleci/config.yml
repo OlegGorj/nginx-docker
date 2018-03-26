@@ -3,6 +3,16 @@ jobs:
   build:
     machine: true
     steps:
+      - checkout
+      - run: service docker status
+      - run: |
+          cd ~
+          git clone https://github.com/OlegGorj/nginx-docker-minimal.git
+          cd nginx-docker-minimal
+      - run: |
+          docker build .
+
+
 #      - checkout
 #      - run: apt-get update
 #      - run: apt install -y yum
@@ -21,12 +31,3 @@ jobs:
 #          apt-get update
 #          apt-get install -y docker-ce
 #          echo "INFO: `date`: ------------------Docker package installation complete--------------------------"
-      - run: service docker status
-      - run:
-        command: |
-          cd ~
-          git clone https://github.com/OlegGorj/nginx-docker-minimal.git
-          cd nginx-docker-minimal
-      - run:
-        command: |
-          docker build .
