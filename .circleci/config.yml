@@ -13,6 +13,13 @@ jobs:
       - run: apt-get -y install git-all
       - run:
           command: |
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+            apt-cache policy docker-ce
+            sudo apt-get install -y docker-ce
+            echo "INFO: `date`: ------------------Docker package installation complete--------------------------"
+      - run:
+          command: |
             cd ~
             git clone https://github.com/OlegGorj/nginx-docker-minimal.git
             cd nginx-docker-minimal
